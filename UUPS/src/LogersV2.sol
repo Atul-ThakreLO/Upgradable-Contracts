@@ -73,6 +73,10 @@ contract LogersV2 is Initializable, OwnableUpgradeable, UUPSUpgradeable {
         return userBalance[user];
     }
 
+    function getVersion() public pure returns (uint256) {
+        return 2;
+    }
+
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
     function authorizeUpgrade(address newImplementation) public {
