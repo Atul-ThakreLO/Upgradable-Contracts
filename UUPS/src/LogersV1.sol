@@ -32,7 +32,7 @@ contract LogersV1 is Initializable, OwnableUpgradeable, UUPSUpgradeable {
         __Ownable_init(msg.sender);
     }
 
-    function deposite() public payable greaterThanZero {
+    function deposit() public payable greaterThanZero {
         userBalance[msg.sender] += msg.value;
         emit AmountDeposit(msg.sender, msg.value);
     }

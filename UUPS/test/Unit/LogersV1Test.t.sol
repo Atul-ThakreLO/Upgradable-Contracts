@@ -24,7 +24,7 @@ contract LogersV1Test is Test {
 
     function testDepositMoreThanZero() public {
         vm.expectRevert(LogersV1.LogersV1__AmountShouldMoreThanZero.selector);
-        logersV1.deposite{value: 0}();
+        logersV1.deposit{value: 0}();
     }
 
     function testWithdrawMoreThanZero() public {
@@ -39,7 +39,7 @@ contract LogersV1Test is Test {
 
     modifier deposit() {
         vm.prank(user);
-        logersV1.deposite{value: AMOUNT_TO_DEPOSIT}();
+        logersV1.deposit{value: AMOUNT_TO_DEPOSIT}();
         _;
     }
 
@@ -60,14 +60,14 @@ contract LogersV1Test is Test {
         vm.startPrank(user);
         vm.expectEmit(true, true, false, true, address(logersV1));
         emit LogersV1.AmountDeposit(user, AMOUNT_TO_DEPOSIT);
-        logersV1.deposite{value: AMOUNT_TO_DEPOSIT}();
+        logersV1.deposit{value: AMOUNT_TO_DEPOSIT}();
         vm.stopPrank();
     }
 
     function testWithdraw() public {
         uint256 userBalanceBeforeDeposit = user.balance;
         vm.prank(user);
-        logersV1.deposite{value: AMOUNT_TO_DEPOSIT}();
+        logersV1.deposit{value: AMOUNT_TO_DEPOSIT}();
         uint256 userDepositedBalance = logersV1.getBalanceOfUser(user);
         vm.prank(user);
         logersV1.withdraw(userDepositedBalance);
