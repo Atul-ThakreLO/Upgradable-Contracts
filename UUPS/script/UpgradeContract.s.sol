@@ -17,7 +17,7 @@ contract UpgradeContract is Script {
     }
 
     function upgradeContract(address _proxy, address _newImplementation) public returns (address) {
-        vm.startBroadcast();
+        vm.startBroadcast(LogersV2(_proxy).owner());
 
         /// @dev You can also use LogersV1 or UUPSUpgradeable (from openzeppelin) for casting the proxy, here V2 is used.
         LogersV2 proxy = LogersV2(payable(_proxy));
